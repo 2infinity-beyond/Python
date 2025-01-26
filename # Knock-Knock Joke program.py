@@ -1,6 +1,7 @@
 # Knock-Knock Joke program
 '''Name: Regina Stovall
-github link: https://github.com/2infinity-beyond/Python/upload/main'''
+github link: https://github.com/2infinity-beyond/Python
+'''
 
 print("...then I hear a loud", "\nKnock, KNOCK!!! \nSo I cautiously approach the door. \nThen I nervously call out, \n\"Wh- who's there??\"")
 print("Then came a quick reply from the voice of a woman", end="... ")
