@@ -2,7 +2,7 @@
 '''Name: Regina Stovall
 github link: https://github.com/2infinity-beyond/Python
 '''
-
+# the following is a "knock-knock joke" excerpt from a short story created by me.
 print("...then I hear a loud", "\nKnock, KNOCK!!! \nSo I cautiously approach the door. \nThen I nervously call out, \n\"Wh- who's there??\"")
 print("Then came a quick reply from the voice of a woman", end="... ")
 print()
