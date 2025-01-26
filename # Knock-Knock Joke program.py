@@ -2,7 +2,8 @@
 '''Name: Regina Stovall
 github link: https://github.com/2infinity-beyond/Python'''
 
-# the following is a "knock-knock joke" excerpt from a short story created by yours truly.
+# ***The following is a "knock-knock joke" excerpt from a short story created by yours truly.***
+
 # combining multiple lines by using escape code  
 print("...then, I suddenly hear a loud", "\nKnock, KNOCK!!! \nSo I cautiously approach the door. \nThen I nervously call out, \n\"Wh- who's there??\"")
 #using end keyword in combination with escape code
