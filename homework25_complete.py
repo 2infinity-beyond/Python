@@ -3,28 +3,15 @@ Homework2.9
 Name: Regina Stovall 
 github link: 
 '''
-
-def budget(income,total_expenses,percentage):
+def birthday(month,day,year):
     # your code here
-    income = input("what is your monthly income?")
-    print("Sounds good. Let's analyze your expenses for the month.")
-    housing= input("How much do you pay for housing per month?")
-    percentage_1 = float(housing / income)
-    print("Your housing expense is ", percentage, "percent of your monthly budget.\n cont")
-    # cont = ("Let's keep going...")
-    utilities = input("How much do you pay for utilites per month?")
-    percentage_2 = float(utilities / income)
-    print("Your utilities expense is ", percentage, "percent of your monthly budget.\n cont)
-    groceries = input("How much do you pay for groceries per month?")
-    transportation = input("How much do you pay for transportation per month?")
-    health_care = input("How much do you pay for health care per month?")
-    personal_care = input("How much do you pay for personal care per month?")
-    clothing_expense = input("How much do you pay for clothing per month?")
-    debt_expense = input("What is the amount of debt you own?")
-     
-
-    ''' this function generates a personalized message 
-    for the user based on the provided birthday'''
+    month = ("December") # user's birth month
+    day = (21) # user's birth day
+    year = (2002) # user's birth year
+    birthday = month, day, year # user's full date of birth
+    print("Your birthday is Decemeber 21, 2002.")
+    ''' this function generates a personalized message for the user 
+    based on their birthday'''
 
 def address(street,city,state,zipcode):
     #your code here
