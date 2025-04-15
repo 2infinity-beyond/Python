@@ -64,15 +64,18 @@ class ProductionWorker(Employee):
         super().__init__(fname, lname, number)
 
         # setting additional attributes specific to this sub-class
-        self.shift = (shift)
+        self.setshift(shift)
         self.pay = pay
 
     # implementing getter and setter methods for class attributes
     def setshift(self, shift):
-        self.shift = shift 
-    
+        if shift in [1, 2]:
+            self.shift = "Day" if shift == 1 else "Night"     # shift code 1 for Day, 2 for Night
+        else:
+            raise ValueError ("Error: Enter 1 for Day shift or 2 for Night shift")
+        
     def getshift(self):
-        if hasattr (self, "shift"):
+        if hasattr (self, "shift"):    
             return self.shift
         
     def setpay(self, pay):
@@ -84,8 +87,8 @@ class ProductionWorker(Employee):
         
     # string method to display class object attributes
     def __str__(self):
-        return super().__str__() +f"Shift Number: {self.shift}\nHourly Pay Rate: ${self.pay:.2f}\n"
-        pass
+        return super().__str__() +f"Shift: {self.getshift()}\nHourly Pay Rate: ${self.pay:.2f}\n" 
+       
 
 '''Assignment Part 2: Implementing and Testing
 
@@ -102,7 +105,7 @@ def main():
     fname = input("Enter Employee first name: ")
     lname = input("Enter Employee last name: ")
     number = input("Enter Employee ID number: ")
-    shift = input("Enter shift code: ")
+    shift = int(input("Enter shift code: "))
     pay = float(input("Enter hourly pay rate: "))
     
     # creating an instance of ProductionWorker class with attribute information from user inputs
