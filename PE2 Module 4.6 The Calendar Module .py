@@ -1,5 +1,5 @@
 '''
-PE2 Module 4.5 The DATETIME module 
+PE2 Module 4.6 The Calendar Module 
 Name: Regina Stovall
 github link: https://github.com/2infinity-beyond/Python
 '''
