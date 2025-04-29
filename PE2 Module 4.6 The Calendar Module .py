@@ -13,7 +13,7 @@ def main():
     # getting the current year 
     current_year = datetime.datetime.now().year
 
-    user_input_month = int(input("Please enter the number the corresponds with your birth month: "))
+    user_input_month = int(input("Please enter the number that corresponds with your birth month: "))
     
     # loop to ensure user input is within the appropriate boundaries
     # and handle any exceptions
