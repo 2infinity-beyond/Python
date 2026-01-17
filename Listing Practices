@@ -1,0 +1,28 @@
+'''
+Understanding listing capabilities
+'''
+
+continents = ["Europe", "Asia", "Africa", "Australia"]
+print(f'Original list: {continents}')
+
+continents.insert(0, "North America")
+continents.append("South America")
+print(f'Updated list: {continents}')
+
+continents_tuple = tuple(continents)
+print(f'Tuple: {continents_tuple}')
+
+continents_set = set(continents)
+print(f'Set: {continents_set}')
+
+continents_dict = dict((continent, len(continent)) for continent in continents)
+print(f'Dictionary: {continents_dict}')
+
+continents.append("Antartica")
+continents.pop(4)
+print(f'Updated list: {continents}')
+
+continents_dict = dict((continent, len(continent)) for continent in continents)
+print(f'Updated dictionary: {continents_dict}')
+
+
