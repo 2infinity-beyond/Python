@@ -1,6 +1,4 @@
 # Knock-Knock Joke program
-'''Name: Regina Stovall
-github link: https://github.com/2infinity-beyond/Python'''
 
 # ***The following is a "knock-knock joke" excerpt from a short story created by yours truly.***
 
@@ -20,3 +18,4 @@ print()
 print("I","AM","STUNNED.", sep=" - ") 
 #using escape code to create a new line at the beginning of a string
 print("\nA part of me wants to respond but I'm too perplexed because why didn't I think of that first? \n")
+
