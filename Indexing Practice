@@ -1,0 +1,49 @@
+"""Indexing practice"""
+
+
+quote = "Life is like riding a bicycle. To keep your balance, you must keep moving."
+print(quote)
+
+split_quote = quote.split()
+print(f'\nTotal number of words: {len(split_quote)}')
+print()
+first_word = split_quote[0]
+last_word = split_quote[-1]
+print (f'First word: {first_word}')
+print(f'Last word: {last_word}')
+
+first_word = first_word.lower()
+last_word = last_word.upper()
+print(f'Modified first_word: {first_word}')
+print(f'Modified last_word: {last_word}')
+
+split_quote[0] = first_word
+split_quote[-1] = last_word
+reconstructed = ' '.join(split_quote)
+print(f'\nReconstructed quote: \n{reconstructed}')
+print()
+print(f'Index of \'bicycle\': {reconstructed.index("bicycle")}')
+print()
+
+print(f'Occurrences of \'keep\': {reconstructed.count("keep")}')
+
+reconstructed = reconstructed.replace("keep", "maintain")
+print("Updated quote: ")
+print(quote)
+
+sentences = quote.split('.')
+sentences = [sentence.strip() for sentence in sentences if sentence.strip()]
+
+for i in range(len(sentences) - 1):
+    sentences[i] += '.'
+    
+print("\nNumber of sentences:", len(sentences))   
+first_sentence = sentences[0]
+second_sentence = sentences[1]
+    
+print(f'Second sentence: {second_sentence}')
+print(f'First sentence in uppercase: {first_sentence.upper()}')
+print(f'Last sentence in uppercase: {second_sentence.upper()}')
+
+print(f'\nReversed and reconstructed paragraph: \n{second_sentence}. {first_sentence}')
+
