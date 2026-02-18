@@ -1,25 +1,34 @@
+'''
+
+'''
 import random
 
-num = int(input("Enter the size of the table: "))
+while True:
+    num = int(input("Enter the size of the table (up to 10): "))
 
-while num != 0:
+#ensure number is within a reasonable range
+    if 1 <= num <= 10:  
         for i in range(1, num + 1):
             for j in range(1, num + 1):
-                print(i * j, end =" ")
-            i += 1
-            print()
-        break
+                print(i * j, end=" ")
+            print()  #print a new line after each row
+        break  
+    else:
+        print("Please enter a number between 1 and 10.")
+
 
 print("Now let's test your multiplication skills!")
 
 random_num1 = random.randint(1, num)
 random_num2 = random.randint(1, num)
 
-answer = int(input(f"What is {random_num1} x {random_num2}?"))
+answer = int(input(f"What is {random_num1} x {random_num2}? "))
 print(f"Your answer: {answer}")
+
+# Check if the answer is correct
 if answer == random_num1 * random_num2:
     print("Correct!")
 else:
-    print("Incorrect. The correct answer is {random_num1*random_num2}.")
+    print(f"Incorrect. The correct answer is {random_num1 * random_num2}.")
 
            
