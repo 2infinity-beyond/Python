@@ -1,0 +1,105 @@
+'''INSTRUCTIONS
+Problem 2: Text File Handling
+
+Points Possible: 20
+This problem will allow you to demonstrate your understanding of reading from and writing to plain text files in Python.
+Instructions:
+1.	Write a program that manages a to-do list stored in a text file. Your program should allow users to add tasks to the to-do list and view all existing tasks. 
+    Follow these steps:
+    a.	Create a variable to store the file's name to contain the to-do list items (todo.txt).
+    b.	Welcome the user to the program.
+    c.	Prompt users to provide their desired action (add/view/exit).
+        i.	Add a Task to the To-Do List:
+            1.	Prompt the user to enter a task to add to the to-do list.
+            2.	Open the file in append mode and write the task to the file.
+            3.	Ensure the task is written on a new line.
+            4.	Print a confirmation message to the user that the task was added successfully.
+            5.	Close the file after writing the task (explicitly or implicitly).
+        ii.	View All Tasks:
+            1.	Open the file in read mode and read all the tasks in the to-do list. Use exception handling for FileNotFoundError, and if it does not exist yet, simply state that the to-do list is empty.
+            2.	Print the contents of the file to the console.
+            3.	If the file does not contain tasks, display a message indicating the to-do list is empty.
+        iii.	Exit:
+            1.	Print a goodbye message and end the program.
+        iv.	Handle any invalid input.
+            1.	If they don’t select a valid action, display an error message and allow them to try again.
+    d.	Loop for Continuation:
+        i.	Allow the user to continue adding tasks or viewing tasks until they decide to exit.
+        ii.	After each operation, ask the user if they want to add another task, view tasks, or exit.
+    e.	Comments:
+        i.	Provide comments in your code to explain the logic used.
+    f.	Test the Program:
+        i.	Test your program by adding multiple tasks and viewing them to ensure they work as expected. 
+            1.	Exit the program and then start it back up. View your list to ensure your previous tasks were written in the file.
+            2.	When your program runs, it should match the expected output below but work for valid user input.'''
+
+
+
+MY PROJECT: 
+
+'''
+Course: IFT 101
+Problem Set: P3
+Problem: 1
+Date: April 18, 2025
+'''
+# saving the name of the file to a variable
+new_file = "todo.txt"
+
+'''optional -- to clear previous file contents, run the following code: 
+with open(new_file, 'w') as file:
+    pass'''
+
+# welcome message printed to user
+print("Welcome to the To-Do List Manager!")
+
+#defining function for adding tasks
+def add_task():
+    
+    # prompt to enter a task to add to the to-do list
+    add_task = input("Enter the task you want to add: ")
+    
+    #opening the file in append mode to add task items to file
+    with open(new_file, "a") as file: 
+       # write the task to the file with a dash in front
+       file.write(f"\n- {add_task}")
+    # print success message to user
+    print(f"Task added successfully!")
+
+# defining a function to view current task list
+def view_tasks():
+    
+    # try to open file and print its contents
+    try:
+        with open(new_file, "r") as file:  
+            tasks = file.readlines()
+            # if there is a task listed
+            if tasks:
+                #print a heading for the list
+                print("\nHere is your to-do list:")
+                # iterate through the list and print each item
+                for i in tasks:
+                    print(i)
+            # if there is no task listed, print a message
+            else:
+                print("\nYour to-do list is empty.")
+    # handle a File Not Found error
+    except FileNotFoundError:
+        print("\nThe to-do list is empty.")
+
+# establishing a continuation loop
+while True:
+    # prompt user to make their request
+    user_request = input("\nWould you like to add a task, view tasks, or exit (add/view/exit): ")
+    # handle their request accordingly   
+    if user_request == 'add':
+        add_task()
+    elif user_request == 'view':
+        view_tasks()
+    elif user_request == "exit":
+        print("Goodbye!")
+        break
+    else:
+        print("Invalid choice. Please enter \'add\', \'view\', or \'exit\'.")
+
+  
