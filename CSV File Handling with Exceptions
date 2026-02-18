@@ -1,0 +1,110 @@
+'''INSTRUCTIONS
+
+Problem 3: CSV File Handling
+
+Points Possible: 30
+
+This problem will allow you to demonstrate your understanding of reading from and writing to CSV files and incorporating exception handling in Python.
+Instructions:
+1.	Write a Python program that manages employee records. The program will allow the user to input employee details, save them to a CSV file, and read them back while handling exceptions gracefully. Follow these steps:
+    a.	Prompt for Input:
+        i.	Ask the user to enter the employee’s name, age, and department.
+        ii.	If the user does not enter a valid age (i.e., a positive integer), your program should catch this error and prompt the user to enter the age again.
+    b.	Write to CSV File:
+        i.	Open a new file named employee_records.csv in append mode.
+        ii.	Write the employee’s information in CSV format for this file.
+        iii.	Handle exceptions for file access issues (e.g., permission errors, IO errors).
+    c.	Read from CSV File:
+        i.	Open the employee_records.csv file in read mode.
+        ii.	Handle exceptions for FileNotFoundError or other IO errors.
+        iii.	Read the file's contents and print them to the console, displaying all employee records.
+    d.	Comments:
+        i.	Provide comments in your code to explain the logic and handling of exceptions.
+    e.	Test the Program:
+        i.	Test your program with inputs, including valid and invalid ages, and ensure the file operations work as expected.
+            1.	Exit the program and then start it back up. Add more employees to confirm your previous employees were written to the file.
+            2.	When your program runs, it should match the expected output below but work for valid user input.'''
+
+
+'''MY PROJECT
+Course: IFT 101
+Problem Set: P3
+Problem: 1
+Date: April 18, 2025
+'''
+
+
+import csv
+container=[]
+
+def employee_details():
+    """Prompt the user for employee details with error handling for invalid age."""
+    
+    
+    while True:
+        employee_name = input("Enter employee's name: ")
+   
+        while True:
+        
+            employee_age = input("Enter employee's age: ")
+        
+            try:
+        # Check if input is alphanumeric
+                if not employee_age.isdigit():  # .isdigit() ensures only numeric values
+                    raise ValueError("Age must be numeric.")
+                
+        # Check if age is a positive number
+                if int(employee_age) <= 0:
+                    raise ValueError("Age must be greater than zero.")
+                break
+            
+            except ValueError:
+                print(f"Invalid input. Please try again.")
+
+        
+        employee_dept = input("Enter employee's department: ")
+    
+        container.append((employee_name, employee_age, employee_dept))
+        print("Record added successfully!\n")
+    
+        for i in container:
+            print("{},{},{}".format(i[0], i[1], i[2]))
+        
+        while True:
+            to_continue = input("\nWould like to add another record? (yes/no): ")
+        
+            if to_continue == 'yes':
+                break
+            
+            elif to_continue == 'no':
+                print("Goodbye!")
+                return
+            else:
+                print("Invalid input. Please enter 'yes' or 'no'")
+        
+
+def write_csv_file():
+    try:
+        with open("employee_records.csv", "a") as file:
+        #for line in file:
+            #container.append(line)
+            writer = csv.writer(file)
+            writer.writerows(container)
+            
+    except FileNotFoundError:
+        print("File cannot be found")
+    except IOError:
+        print("File cannot be accessed")
+        
+def read_csv_file():
+    try:      
+        with open("employee_records.csv", "r") as file:
+            read = csv.reader(file)
+            lines = list(read)
+            for row in lines:
+                print("," .join(row))
+    except:
+        print("File cannot be read")
+
+    
+employee_details()
