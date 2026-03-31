@@ -1,0 +1,115 @@
+'''
+TEAM ROSTER MANAGEMENT
+Problem Set: PS6_P3
+Date: April 25, 2025
+'''
+
+
+#Player Class
+class Player:
+    
+    #instantiating a list to store all Player objects
+    all_players = [] 
+
+    #initializing the class with attributes
+    def __init__(self, name, position, team = None):
+        self.name = name  
+        self.position = position
+        self.team = team
+        Player.all_players.append(self)  
+
+    # establishing a string method, accounting for different team status conditions 
+    def __str__(self):
+        if self.team:
+            return f"Name: {self.name}, Position: {self.position}, Team: {self.team.team_name}"
+        else:
+            return f"Name: {self.name}, Position: {self.position}, Team: Free Agent"
+        
+    # defining a method to list the players    
+    def list_all_players():
+        if Player.all_players:
+            print("\nAll Players Globally:")
+            for player in Player.all_players:
+                print(player)
+        else:
+            print("No players have been added to the team yet.")
+
+# Team class to handle team manipulation methods
+class Team:
+    
+    # initializing Team object with team name attribute and an empty roster list
+    def __init__(self, team_name):
+        self.team_name = team_name.capitalize()
+        self.roster = []     
+
+    # method to add players to the roster
+    def add_player(self, player):
+        if player.team:
+            print(f"Cannot add player {player.name}. They are already on team {player.team.team_name}.")
+        else:
+            self.roster.append(player)
+            player.team = self
+            print(f"Player {player.name} added to team {self.team_name}.")
+
+    # method to remove a player from the team roster and resetting their team to None
+    def remove_player(self, player):
+        if player in self.roster:
+            self.roster.remove(player)
+            player.team = None
+            print(f"Player {player.name} has been removed from team {self.team_name}.")
+        # if player is not in the roster
+        else:
+            print(f"Player is not on the team.")
+    
+    # method to list all the players in the roster, unless it is empty
+    def list_roster(self):
+        print(f"\nRoster for {self.team_name}:")
+        if self.roster:
+            for player in self.roster:
+                print(player)
+        else:
+            print(f"\nNo players have been added to the team yet.")
+    
+
+
+# creating two Team objects
+
+team1 = Team("Warriors")
+team2 = Team("Lions")
+
+# creating four Player objects
+
+player1 = Player("Alice", "Forward")
+player2 = Player("Bob", "Goalkeeper")
+player3 = Player("Charlie", "Defender")
+player4 = Player("Dave", "Midfielder")
+
+# adding 3 players to teams
+
+print("\nAdding players to teams...")
+team1.add_player(player1)
+team1.add_player(player2)
+
+team2.add_player(player3)
+
+# trying to add a player to a different team
+
+team2.add_player(player1)
+
+#  all players for each team
+
+team1.list_roster()
+
+team2.list_roster()
+
+print("\nReassigning players...")
+team1.remove_player(player1)
+team2.add_player(player1)
+
+team1.list_roster()
+
+team2.list_roster()
+
+# list all players
+
+Player.list_all_players()
