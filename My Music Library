@@ -1,0 +1,89 @@
+'''
+MY MUSIC LIBRARY
+Problem Set: PS6_P1
+Date: April 25, 2025
+'''
+
+# initiating a Track class with a title, artist, and duration attribute
+class Track:
+    def __init__(self, title = '', artist = '', duration = 0):
+        self.title = title
+        self.artist = artist
+        self.duration = float(duration)
+
+    # a get method to get the info about the Track 
+    def get_info(self):
+       get_title = self.title
+       get_artist = self.artist
+       get_duration = self.duration
+       return f"Track: '{get_title}' by {get_artist} ({get_duration:.2f} mins)."
+
+
+
+class MusicLibrary:
+    def __init__ (self):
+        #super().__init__(title, artist, duration)
+        self.track_list = []
+        
+
+       # A method that takes a Track object and adds it to the library’s list of tracks.
+    
+    def add_track(self, track):
+        self.track_list.append(track)
+        print(f"Track added: \'{track.title}\' by {track.artist} ({track.duration}).")
+
+ #A method that takes a title as an argument and removes the corresponding Track object from the list.
+    
+    def remove_track(self, title):
+        for track in self.track_list[:]:
+            if track.title == title:
+                self.track_list.remove(track)
+                print(f"\nTrack removed: \'{track.title}\' by {track.artist}.")
+                return
+        print(f"\nTrack titled '{title}' not found. Nothing changed.")
+    
+    # A method that iterates over the list of tracks and prints the details of each track using the get_info() method of the Track class.
+    # (unless the library is empty)
+
+    
+    def display_library(self):
+        print("\nCurrent tracks in the library:")
+        if len(self.track_list) > 0:
+            for track in self.track_list:
+                print(track.get_info())
+        else:
+            print("The music library is currently empty.")
+    
+    # A method that calculates the total duration of all tracks in the library and prints it in a format
+    
+    def total_duration(self):
+        total = 0
+        for track in self.track_list:
+             total += track.duration
+        print(f"Total duration of all tracks: {total:.2f} minutes")
+
+
+# creating three random tracks
+track1 = Track("Thriller", "Michael Jackson", 5.57)
+track2 = Track("I Will Always Love You", "Whitney Houston", 4.31)
+track3 = Track("Superstition", "Stevie Wonder", 4.26)
+
+# establishing an instance object of the MusicLibrary class
+my_library = MusicLibrary()
+
+print(f"\nAdding tracks to the music library...")
+my_library.add_track(track1)
+my_library.add_track(track2)
+my_library.add_track(track3)
+
+my_library.display_library()
+my_library.total_duration()
+
+my_library.remove_track("I Will Always Love You")
+my_library.display_library()
+my_library.total_duration()
+
+my_library.remove_track("I Believe in Miracles")
+my_library.display_library()
+my_library.total_duration()
+        
