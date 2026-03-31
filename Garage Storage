@@ -1,0 +1,174 @@
+'''
+Garage Storage Record Program
+April 25, 2025
+'''
+
+# parent class representing a general vehicle
+class Vehicle:
+    def __init__(self, name, year, vehicle_type):
+        self.name = name
+        self.year = year
+        self.vehicle_type = vehicle_type
+
+    # establishing the super string format
+    def __str__(self):
+        return f"Vehicle: {self.name.title()}, Type: {self.vehicle_type.capitalize()}, Year: {self.year}"
+    
+    # another method to describe the vehicle's sound
+    def make_sound(self):
+        return "Generic vehicle sound."
+
+
+# new Truck child class derived from Vehicle 
+class Truck(Vehicle):
+    
+    #initializing the super class methods and adding a custom method
+    def __init__(self, name, year, num_wheels):
+        super().__init__(name, year, vehicle_type = "truck")
+        self.num_wheels = num_wheels
+
+    # overwriting the super make_sound method
+    def make_sound(self):
+        return "Rrrrrrraaaawwwwrrrr"
+    
+    # the custom string method for Truck, adding to the super string method 
+    def __str__(self):
+        return super().__str__() + f", Number of Wheels: {self.num_wheels}"
+
+
+# additional child class of Vehicle, "Motorcycle" 
+class Motorcycle(Vehicle):
+    
+    #initializing with super methods and adding a custom method
+    def __init__(self, name, year, sport):
+        super().__init__(name, year, vehicle_type = "motorcycle")
+        self.sport = sport
+    
+    # overwriting the previous methods to customize to the Motorcycle class
+    def make_sound(self):
+        return "Sqqqrrrrrrrrtttt"
+
+    # custom string format for Motorcycle class object calls
+    def __str__(self):
+
+        return super().__str__() + f", Sport Bike: {self.sport.capitalize()}"
+
+# a class to handle Garage activity
+class Garage:
+    
+    # initializing with an empty list to represent the Garage container
+    def __init__(self):
+        self.vehicles = []
+
+    # method to add vehicles to the garage list of vehicles and print a confirmation
+    def add_vehicle(self, vehicle):
+        self.vehicles.append(vehicle)
+        print(f"Vehicle {vehicle.name} added to the garage.")
+
+    # method to remove vehicles from the garage list, unless the vehicle is not there
+    def remove_vehicle(self, vehicle_name):
+        for vehicle in self.vehicles:
+            if vehicle.name == vehicle_name:
+                self.vehicles.remove(vehicle)
+                print(f"{vehicle_name} removed from the garage.")
+                return
+        print("Vehicle not found in the garage.")
+
+    # method to print the garage list, unless it is empty
+    def list_vehicles(self):
+        print("\nVehicles in the garage:")
+        if len(self.vehicles) > 0:
+            for vehicle in self.vehicles:
+                print(vehicle)         
+        else:
+            print("The garage is empty.")
+            
+# the main function to run the program
+def main():
+    
+    # establish a Garage object to apply Garage methods to the program
+    my_garage = Garage()
+    
+    # establishing a dictionary of the types of vehicles with their respective class names
+    vehicle_classes = {"truck": Truck, "motorcycle": Motorcycle}
+   
+   # starting a loop to run the code over and over, until it breaks
+    while True:
+        print("\nWelcome to the Vehicle Management System!")
+        print("1. Add a vehicle")
+        print("2. Remove a vehicle")
+        print("3. List all vehicles")
+        print("4. Quit")
+        user_request = input("Enter your choice: ")
+            
+        # apply methods according to the user's request
+        if user_request == "1":
+            name = input("Enter the vehicle's name: ")
+            
+            # loop to handle exceptions for year entry
+            while True:
+                try:
+                    year = int(input("Enter the year of manufacture: "))
+                    break
+                except ValueError:
+                    print("Year invalid. Please try again.")
+            
+            # loop to handle exceptions for vehicle type entry
+            while True:  
+                vehicle_type = input("Enter the vehicle type (truck/motorcycle): ").lower()
+                
+                # working with the "truck" option
+                if vehicle_type == "truck":
+                    
+                    # loop to handle exceptions for the number of wheels attribute
+                    while True:
+                        try:
+                            num_wheels = int(input("Enter the number of wheels: "))
+                            vehicle = Truck(name, year, num_wheels)
+                            my_garage.add_vehicle(vehicle)
+                            break
+                        except ValueError:
+                            print("Invalid number of wheels. Please enter a valid number.")  
+                
+                # working with the "motorcycle" option               
+                elif vehicle_type == "motorcycle":
+                    
+                    # loop to handle exceptions for sport factor
+                    while True:
+                        sport = input("Is it a Sport bike? (yes/no): ").lower()
+                        if sport == "yes" or sport == "no":
+                            vehicle = Motorcycle(name, year, sport)
+                            my_garage.add_vehicle(vehicle)
+                            break
+                        else:
+                            print("Invalid response. Please enter \'yes\' or \'no\'")         
+              
+              # if neither "truck" nor "motorcycle", print custom error message    
+                else:
+                    print("Invalid vehicle type. Please choose \'truck\' or \'motorcycle\'")
+                    continue
+               
+               # stop the vehicle type loop 
+                break
+        
+        # for option 2 requests
+        elif user_request == "2":
+            name = input("Enter the name of the vehicle to remove: ")
+            my_garage.remove_vehicle(name)
+
+        # for option 3 requests
+        elif user_request == "3":
+            my_garage.list_vehicles()
+
+        # for option 4 requests
+        elif user_request == "4":
+            print("Goodbye!")
+            break
+        
+        # if not 1, 2, 3, or 4, print custom error message and start over
+        else:
+            print("Invalid choice. Please choose a valid option.")
+
+
+
+main()
